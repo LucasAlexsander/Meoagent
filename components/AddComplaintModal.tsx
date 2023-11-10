@@ -129,10 +129,6 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
 
   const handleChange = (name: string) => {
     console.log("olá");
-    // setFormValues((prevValues: FormValues) => ({
-    //   ...prevValues,
-    //   // [name]: typeof prevValues[name] === "boolean" ? !prevValues[name] : true,
-    // }));
   };
 
   const handleDescricaoChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
