@@ -130,7 +130,7 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
   const handleChange = (name: string) => {
     setFormValues((prevValues: FormValues) => ({
       ...prevValues,
-      [name]: typeof prevValues[name] === "boolean" ? !prevValues[name] : true,
+      // [name]: typeof prevValues[name] === "boolean" ? !prevValues[name] : true,
     }));
   };
 
