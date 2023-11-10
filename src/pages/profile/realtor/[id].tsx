@@ -166,12 +166,6 @@ export default function Profile() {
         sessionProfile={sessionProfile}
         pdfPage={pdfPage}
       />
-      {/* <Complaint
-        localId={localId}
-        accType={accType}
-        sessionProfile={sessionProfile}
-        pdfPage={pdfPage}
-      /> */}
       {/* {pdfPage && <div className="hide-profile"></div>} */}
     </Container>
   );
