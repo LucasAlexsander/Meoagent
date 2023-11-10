@@ -79,6 +79,17 @@ const Container = styled.div`
   }
 `;
 
+interface FormValues {
+  "Morada mal": boolean;
+  "Preço incorreto": boolean;
+  "Possível fraude": boolean;
+  "Erros na foto": boolean;
+  "Já foi vendido": boolean;
+  "Telefone errado": boolean;
+  "Email errado": boolean;
+  descricao: string;
+}
+
 type AddComplaintModalProps = {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -105,21 +116,21 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
 
   const t = locales[locale as keyof typeof locales];
 
-  const [formValues, setFormValues] = useState({
-    morada: false,
-    precoErrado: false,
-    fraude: false,
-    fotoIncorreta: false,
-    vendido: false,
-    telefoneInvalido: false,
-    emailInvalido: false,
+  const [formValues, setFormValues] = useState<FormValues>({
+    "Morada mal": false,
+    "Preço incorreto": false,
+    "Possível fraude": false,
+    "Erros na foto": false,
+    "Já foi vendido": false,
+    "Telefone errado": false,
+    "Email errado": false,
     descricao: "",
   });
 
   const handleChange = (name: string) => {
-    setFormValues((prevValues) => ({
+    setFormValues((prevValues: FormValues) => ({
       ...prevValues,
-      [name]: !prevValues[name],
+      [name]: typeof prevValues[name] === "boolean" ? !prevValues[name] : true,
     }));
   };
 
@@ -163,8 +174,8 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
                 type="checkbox"
                 name="Morada mal"
                 id="morada"
-                checked={formValues["morada"] || false}
-                onChange={() => handleChange("morada")}
+                checked={formValues["Morada mal"] || false}
+                onChange={() => handleChange("Morada mal")}
               />
               <label htmlFor="morada">
                 <p>{t.complaint.opt1}</p>
@@ -174,9 +185,9 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
               <input
                 type="checkbox"
                 name="Preço incorreto"
-                id="preco"
-                checked={formValues["precoErrado"] || false}
-                onChange={() => handleChange("precoErrado")}
+                id="Preço incorreto"
+                checked={formValues["Preço incorreto"]}
+                onChange={() => handleChange("Preço incorreto")}
               />
               <label htmlFor="preco">
                 <p>{t.complaint.opt2}</p>
@@ -187,8 +198,8 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
                 type="checkbox"
                 name="Fraude"
                 id="fraude"
-                checked={formValues["fraude"] || false}
-                onChange={() => handleChange("fraude")}
+                checked={formValues["Possível fraude"] || false}
+                onChange={() => handleChange("Possível fraude")}
               />
               <label htmlFor="fraude">
                 <p>{t.complaint.opt3}</p>
@@ -199,8 +210,8 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
                 type="checkbox"
                 name="Erros na foto"
                 id="foto"
-                checked={formValues["fotoIncorreta"] || false}
-                onChange={() => handleChange("fotoIncorreta")}
+                checked={formValues["Erros na foto"] || false}
+                onChange={() => handleChange("Erros na foto")}
               />
               <label htmlFor="foto">
                 <p>{t.complaint.opt4}</p>
@@ -211,8 +222,8 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
                 type="checkbox"
                 name="Já foi vendido"
                 id="vendido"
-                checked={formValues["vendido"] || false}
-                onChange={() => handleChange("vendido")}
+                checked={formValues["Já foi vendido"] || false}
+                onChange={() => handleChange("Já foi vendido")}
               />
               <label htmlFor="vendido">
                 <p>{t.complaint.opt5}</p>
@@ -223,8 +234,8 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
                 type="checkbox"
                 name="Telefone errado"
                 id="telefone"
-                checked={formValues["telefoneInvalido"] || false}
-                onChange={() => handleChange("telefoneInvalido")}
+                checked={formValues["Telefone errado"] || false}
+                onChange={() => handleChange("Telefone errado")}
               />
               <label htmlFor="telefone">
                 <p>{t.complaint.opt6}</p>
@@ -235,8 +246,8 @@ const AddComplaintModal = ({ open, setOpen }: AddComplaintModalProps) => {
                 type="checkbox"
                 name="Email errado"
                 id="email"
-                checked={formValues["emailInvalido"] || false}
-                onChange={() => handleChange("emailInvalido")}
+                checked={formValues["Email errado"] || false}
+                onChange={() => handleChange("Email errado")}
               />
               <label htmlFor="email">
                 <p>{t.complaint.opt7}</p>
